@@ -4,7 +4,7 @@ import React from 'react';
 export default function App() {
   return (
     <View>
-      <Text>Hello from home screen with added line</Text>
+      <Text>Hello from App</Text>
     </View>
   );
 }
