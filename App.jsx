@@ -14,7 +14,6 @@ const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-<<<<<<< HEAD
     <>
       <NavigationContainer>
         <Tab.Navigator
@@ -63,10 +62,5 @@ export default function App() {
         </Tab.Navigator>
       </NavigationContainer>
     </>
-=======
-    <View>
-      <Text>Hello from App</Text>
-    </View>
->>>>>>> da5b4db7e4eb3ed0fbb84b99302594851c42878d
   );
 }
