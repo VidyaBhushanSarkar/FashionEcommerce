@@ -4,6 +4,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Header from '../components/Header';
 import Category from '../components/Category';
+import ProductCard from '../components/ProductCard';
 
 const categories = ['Trending Now', 'All', 'New', 'Mens', 'Womens'];
 export default function HomeScreen() {
@@ -31,13 +32,20 @@ export default function HomeScreen() {
         horizontal={true}
         showsHorizontalScrollIndicator={false}
       />
+      <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+        <ProductCard />
+        <ProductCard />
+      </View>
+      <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+        <ProductCard />
+        <ProductCard />
+      </View>
     </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     padding: 20,
   },
   homeText: {
