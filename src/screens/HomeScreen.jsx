@@ -1,46 +1,79 @@
-import {FlatList, StyleSheet, Text, TextInput, View} from 'react-native';
+import {
+  FlatList,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 import React, {useState} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Header from '../components/Header';
 import Category from '../components/Category';
 import ProductCard from '../components/ProductCard';
+import data from '../data/data.json';
 
 const categories = ['Trending Now', 'All', 'New', 'Mens', 'Womens'];
 export default function HomeScreen() {
+  const [products, setProducts] = useState(data.products);
   const [selectedCategory, setSelectedCategory] = useState('Trending Now');
+  const [isliked, setIsLiked] = useState(false);
+  const handleLiked = item => {
+    const newProducts = products.map(prod => {
+      if (prod.id === item.id) {
+        return {
+          ...prod,
+          isliked: true,
+        };
+      }
+      return prod;
+    });
+    setProducts(newProducts);
+  };
+
   return (
-    <LinearGradient colors={['#FDF0F3', '#FFFBFC']} style={styles.container}>
-      <View>
-        <Header />
-        <Text style={styles.homeText}>Match Your Style</Text>
-        <View style={styles.searchBox}>
-          <Icon name="search" style={styles.searchIcon} size={18} />
-          <TextInput placeholder="Search" />
+    <ScrollView showsVerticalScrollIndicator={false}>
+      <LinearGradient colors={['#FDF0F3', '#FFFBFC']} style={styles.container}>
+        <View>
+          <Header />
+          <Text style={styles.homeText}>Match Your Style</Text>
+          <View style={styles.searchBox}>
+            <Icon name="search" style={styles.searchIcon} size={18} />
+            <TextInput placeholder="Search" />
+          </View>
         </View>
-      </View>
-      <FlatList
-        data={categories}
-        renderItem={({item}) => (
-          <Category
-            item={item}
-            selectedCategory={selectedCategory}
-            setSelectedCategory={setSelectedCategory}
-          />
-        )}
-        keyExtractor={item => item}
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
-      />
-      <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+        <FlatList
+          data={categories}
+          renderItem={({item}) => (
+            <Category
+              item={item}
+              selectedCategory={selectedCategory}
+              setSelectedCategory={setSelectedCategory}
+            />
+          )}
+          keyExtractor={item => item}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+        />
+        {/* <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
         <ProductCard />
         <ProductCard />
-      </View>
-      <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+      </View> */}
+        <FlatList
+          data={products}
+          renderItem={({item, index}) => (
+            <ProductCard item={item} handleLiked={handleLiked} />
+          )}
+          numColumns={2}
+          showsVerticalScrollIndicator={false}
+        />
+        {/* <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
         <ProductCard />
         <ProductCard />
-      </View>
-    </LinearGradient>
+      </View> */}
+      </LinearGradient>
+    </ScrollView>
   );
 }
 
