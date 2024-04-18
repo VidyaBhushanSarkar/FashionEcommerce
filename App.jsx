@@ -10,7 +10,7 @@ import HomeScreen from './src/screens/HomeScreen';
 import ReorderScreen from './src/screens/ReorderScreen';
 import CartScreen from './src/screens/CartScreen';
 import AccountScreen from './src/screens/AccountScreen';
-import ProductsDetails from './src/screens/ProductsDetails';
+import ProductsDetails from './src/screens/ProductsDetailsScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -32,7 +32,8 @@ export default function App() {
           headerShown: false,
           tabBarShowLabel: false,
           tabBarActiveTintColor: '#E96E6E',
-        }}>
+        }}
+        initialRouteName="Cart">
         <Tab.Screen
           name="Home_Stack"
           component={MyHomeStack}
@@ -51,7 +52,6 @@ export default function App() {
             },
           }}
         />
-
         <Tab.Screen
           name="Cart"
           component={CartScreen}

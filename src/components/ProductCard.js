@@ -15,9 +15,8 @@ export default function ProductCard({item, handleLiked}) {
         <Image source={{uri: item.image}} style={styles.coverImage} />
         <Text style={styles.productTitle}>{item.title}</Text>
         <Text style={styles.productPrice}>${item.price}</Text>
-      </View>
-      <View style={styles.wishlistIconContainer}>
         <TouchableOpacity
+          style={styles.wishlistIconContainer}
           onPress={() => {
             handleLiked(item);
           }}>
@@ -34,14 +33,17 @@ export default function ProductCard({item, handleLiked}) {
 
 const styles = StyleSheet.create({
   container: {
-    position: 'relative',
+    display: 'flex',
+    // flexDirection: 'row',
     marginTop: 20,
+    justifyContent: 'space-between',
+    gap: 10,
   },
   coverImage: {
     height: 256,
-    width: 155,
+    width: 167,
     borderRadius: 20,
-    marginRight: 10,
+    position: 'relative',
   },
   productTitle: {
     fontSize: 18,
@@ -57,8 +59,8 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   wishlistIconContainer: {
-    top: 30,
-    right: 20,
+    top: 10,
+    right: 10,
     position: 'absolute',
     backgroundColor: '#fff',
     width: 34,

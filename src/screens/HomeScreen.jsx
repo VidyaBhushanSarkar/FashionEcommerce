@@ -33,47 +33,46 @@ export default function HomeScreen() {
   };
 
   return (
-    <ScrollView showsVerticalScrollIndicator={false}>
-      <LinearGradient colors={['#FDF0F3', '#FFFBFC']} style={styles.container}>
-        <View>
-          <Header />
-          <Text style={styles.homeText}>Match Your Style</Text>
-          <View style={styles.searchBox}>
-            <Icon name="search" style={styles.searchIcon} size={18} />
-            <TextInput placeholder="Search" />
-          </View>
-        </View>
-        <FlatList
-          data={categories}
-          renderItem={({item}) => (
-            <Category
-              item={item}
-              selectedCategory={selectedCategory}
-              setSelectedCategory={setSelectedCategory}
+    <LinearGradient colors={['#FDF0F3', '#FFFBFC']} style={styles.container}>
+      <View style={{marginBottom: 20}}>
+        <Header />
+      </View>
+      <FlatList
+        ListHeaderComponent={
+          <>
+            <View>
+              <Text style={styles.homeText}>Match Your Style</Text>
+              <View style={styles.searchBox}>
+                <Icon name="search" style={styles.searchIcon} size={18} />
+                <TextInput placeholder="Search" />
+              </View>
+            </View>
+            <FlatList
+              data={categories}
+              renderItem={({item}) => (
+                <Category
+                  item={item}
+                  selectedCategory={selectedCategory}
+                  setSelectedCategory={setSelectedCategory}
+                />
+              )}
+              keyExtractor={item => item}
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
             />
-          )}
-          keyExtractor={item => item}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-        />
-        {/* <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-        <ProductCard />
-        <ProductCard />
-      </View> */}
-        <FlatList
-          data={products}
-          renderItem={({item, index}) => (
-            <ProductCard item={item} handleLiked={handleLiked} />
-          )}
-          numColumns={2}
-          showsVerticalScrollIndicator={false}
-        />
-        {/* <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-        <ProductCard />
-        <ProductCard />
-      </View> */}
-      </LinearGradient>
-    </ScrollView>
+          </>
+        }
+        data={products}
+        renderItem={({item, index}) => (
+          <ProductCard item={item} handleLiked={handleLiked} />
+        )}
+        numColumns={2}
+        showsVerticalScrollIndicator={false}
+        columnWrapperStyle={{
+          justifyContent: 'space-between',
+        }}
+      />
+    </LinearGradient>
   );
 }
 
