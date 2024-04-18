@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {useNavigation} from '@react-navigation/native';
 
-export default function ProductCard({item, handleLiked}) {
+export default function ProductCard({item, handleLiked, index}) {
   const navigation = useNavigation();
   return (
     <TouchableOpacity

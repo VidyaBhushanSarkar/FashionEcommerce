@@ -1,11 +1,17 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {useNavigation} from '@react-navigation/native';
 
 export default function Header({isCart}) {
+  const navigation = useNavigation();
   return (
     <View style={styles.headerContainer}>
-      <View style={styles.appIconContainer}>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate('Home_Stack');
+        }}
+        style={styles.appIconContainer}>
         {isCart ? (
           <Ionicons name="chevron-back" size={24} color={'#e96e6e'} />
         ) : (
@@ -14,8 +20,9 @@ export default function Header({isCart}) {
             style={styles.appIcon}
           />
         )}
-      </View>
-      <Text style={styles.myCartText}>My Cart</Text>
+      </TouchableOpacity>
+      {isCart && <Text style={styles.myCartText}>My Cart</Text>}
+
       <View style={styles.dpContainer}>
         <Image source={require('../assets/dp.png')} style={styles.dp} />
       </View>

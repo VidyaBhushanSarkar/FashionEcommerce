@@ -49,7 +49,7 @@ export default function HomeScreen() {
             </View>
             <FlatList
               data={categories}
-              renderItem={({item}) => (
+              renderItem={({item, index}) => (
                 <Category
                   item={item}
                   selectedCategory={selectedCategory}
