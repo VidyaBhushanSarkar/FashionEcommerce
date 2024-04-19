@@ -1,4 +1,4 @@
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View, FlatList} from 'react-native';
 import React from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import Header from '../components/Header';
@@ -11,10 +11,13 @@ export default function CartScreen() {
       <View style={styles.headerContainer}>
         <Header isCart={true} />
       </View>
-      <CartCard />
-      <CartCard />
-      <CartCard />
-      <CartCard />
+      <FlatList
+        data={[1, 2]}
+        renderItem={({item}) => <CartCard item={item} />}
+        keyExtractor={item => item}
+        showsVerticalScrollIndicator={false}
+      />
+
       <View style={styles.calculation}>
         <View style={styles.totalPriceContainer}>
           <Text style={styles.totalPriceLabel}>Total</Text>
