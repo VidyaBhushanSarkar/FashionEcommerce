@@ -1,8 +1,9 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import Header from '../components/Header';
 import {useRoute} from '@react-navigation/native';
+import {CartContext} from '../context/CartContext';
 
 const sizes = ['S', 'M', 'L', 'XL', 'XXL'];
 const colorsArray = [
@@ -14,8 +15,14 @@ const colorsArray = [
   '#000000',
 ];
 export default function ProductsDetails() {
+  const {addToCart} = useContext(CartContext);
   const [selectedSize, setSelectedSize] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
+  const handleAddToCart = item => {
+    item.size = selectedSize;
+    item.color = selectedColor;
+    addToCart(item);
+  };
   const route = useRoute();
   const item = route.params.item;
   return (
@@ -66,7 +73,11 @@ export default function ProductsDetails() {
           );
         })}
       </View>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => {
+          handleAddToCart(item);
+        }}>
         <Text style={styles.buttonText}>Add to Cart</Text>
       </TouchableOpacity>
     </LinearGradient>

@@ -1,18 +1,20 @@
 import {StyleSheet, Text, TouchableOpacity, View, FlatList} from 'react-native';
-import React from 'react';
+import React, {useContext} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import Header from '../components/Header';
 import CartCard from '../components/CartCard';
 import symbolicateStackTrace from 'react-native/Libraries/Core/Devtools/symbolicateStackTrace';
+import {CartContext} from '../context/CartContext';
 
 export default function CartScreen() {
+  const {carts} = useContext(CartContext);
   return (
     <LinearGradient colors={['#FDF0F3', '#FFFBFC']} style={styles.container}>
       <View style={styles.headerContainer}>
         <Header isCart={true} />
       </View>
       <FlatList
-        data={[1, 2]}
+        data={carts}
         renderItem={({item}) => <CartCard item={item} />}
         keyExtractor={item => item}
         showsVerticalScrollIndicator={false}

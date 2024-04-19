@@ -64,12 +64,11 @@ export default function App() {
             options={{
               tabBarIcon: ({size, focused, color}) => {
                 const carts = React.useContext(CartContext);
-                console.log(carts.length);
                 return (
                   <View style={styles.cartContainer}>
                     <Icon name="shopping-cart" size={size} color={color} />
                     <View style={styles.cartValueContainer}>
-                      <Text style={styles.cartValue}>{carts.length}</Text>
+                      <Text style={styles.cartValue}>{carts?.length}</Text>
                     </View>
                   </View>
                 );

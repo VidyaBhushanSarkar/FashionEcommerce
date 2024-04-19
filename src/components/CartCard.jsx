@@ -2,19 +2,18 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-export default function CartCard() {
-  const imageUrl =
-    'https://res.cloudinary.com/dlc5c1ycl/image/upload/v1710567613/cwlk21f74nd9iamrlzkh.png';
+export default function CartCard({item}) {
   return (
     <View style={styles.container}>
-      <Image source={{uri: imageUrl}} style={styles.productImage} />
+      <Image source={{uri: item.image}} style={styles.productImage} />
       <View style={styles.productContent}>
-        <Text style={styles.productTitle}>Product Title</Text>
-        <Text style={styles.productPrice}>$200</Text>
+        <Text style={styles.productTitle}>{item.title}</Text>
+        <Text style={styles.productPrice}>${item.price}</Text>
         <View style={{flexDirection: 'row', columnGap: 10}}>
-          <View style={styles.productColor}></View>
+          <View
+            style={[styles.productColor, {backgroundColor: item.color}]}></View>
           <View style={styles.productSize}>
-            <Text style={styles.productSizeText}>M</Text>
+            <Text style={styles.productSizeText}>{item.size}</Text>
           </View>
         </View>
       </View>
@@ -40,7 +39,6 @@ const styles = StyleSheet.create({
   productColor: {
     width: 32,
     height: 32,
-    backgroundColor: 'red',
     borderRadius: 16,
   },
   productSize: {
@@ -52,7 +50,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   productSizeText: {
-    fontSize: 18,
+    fontSize: 13,
     fontWeight: '500',
   },
 });
