@@ -2,7 +2,7 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-export default function CartCard({item}) {
+export default function CartCard({item, deleteCartItem}) {
   return (
     <View style={styles.container}>
       <Image source={{uri: item.image}} style={styles.productImage} />
@@ -17,7 +17,10 @@ export default function CartCard({item}) {
           </View>
         </View>
       </View>
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          deleteCartItem(item);
+        }}>
         <Icon name={'trash'} color={'#f68cb5'} size={22} />
       </TouchableOpacity>
     </View>

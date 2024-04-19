@@ -38,9 +38,10 @@ export default function ProductsDetails() {
       <Text style={[styles.detailsText, styles.sizeText]}>Size</Text>
 
       <View style={styles.sizeContainer}>
-        {sizes.map(size => {
+        {sizes.map((size, index) => {
           return (
             <TouchableOpacity
+              key={index}
               style={styles.sizeValueContainer}
               onPress={() => {
                 setSelectedSize(size);

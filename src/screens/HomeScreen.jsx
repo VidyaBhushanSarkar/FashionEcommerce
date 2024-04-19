@@ -68,6 +68,7 @@ export default function HomeScreen() {
         )}
         numColumns={2}
         showsVerticalScrollIndicator={false}
+        keyExtractor={item => item.id}
         columnWrapperStyle={{
           justifyContent: 'space-between',
         }}

@@ -7,7 +7,7 @@ import symbolicateStackTrace from 'react-native/Libraries/Core/Devtools/symbolic
 import {CartContext} from '../context/CartContext';
 
 export default function CartScreen() {
-  const {carts} = useContext(CartContext);
+  const {carts, totalPrice, deleteCartItem} = useContext(CartContext);
   return (
     <LinearGradient colors={['#FDF0F3', '#FFFBFC']} style={styles.container}>
       <View style={styles.headerContainer}>
@@ -15,7 +15,9 @@ export default function CartScreen() {
       </View>
       <FlatList
         data={carts}
-        renderItem={({item}) => <CartCard item={item} />}
+        renderItem={({item}) => (
+          <CartCard item={item} deleteCartItem={deleteCartItem} />
+        )}
         keyExtractor={item => item}
         showsVerticalScrollIndicator={false}
       />
@@ -23,17 +25,17 @@ export default function CartScreen() {
       <View style={styles.calculation}>
         <View style={styles.totalPriceContainer}>
           <Text style={styles.totalPriceLabel}>Total</Text>
-          <Text style={styles.totalPriceValue}>$209.5</Text>
+          <Text style={styles.totalPriceValue}>${totalPrice}</Text>
         </View>
         <View style={styles.shippingPriceContainer}>
           <Text style={styles.shippingPriceLabel}>Shipping</Text>
-          <Text style={styles.shippingPriceValue}>$20.7</Text>
+          <Text style={styles.shippingPriceValue}>$00.0</Text>
         </View>
       </View>
       <View style={styles.divider}></View>
       <View style={styles.shippingPriceContainer}>
         <Text style={styles.shippingPriceLabel}>Shipping</Text>
-        <Text style={styles.grandPriceValue}>$220.7</Text>
+        <Text style={styles.grandPriceValue}>${totalPrice}</Text>
       </View>
       <TouchableOpacity style={styles.button}>
         <Text style={styles.buttonText}>Checkout</Text>
