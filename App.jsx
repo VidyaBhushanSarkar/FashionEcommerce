@@ -35,7 +35,7 @@ export default function App() {
             tabBarShowLabel: false,
             tabBarActiveTintColor: '#E96E6E',
           }}
-          initialRouteName="Cart">
+          initialRouteName="">
           <Tab.Screen
             name="Home_Stack"
             component={MyHomeStack}
