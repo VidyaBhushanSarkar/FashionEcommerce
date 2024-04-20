@@ -23,9 +23,13 @@ export default function Header({isCart}) {
       </TouchableOpacity>
       {isCart && <Text style={styles.myCartText}>My Cart</Text>}
 
-      <View style={styles.dpContainer}>
+      <TouchableOpacity
+        style={styles.dpContainer}
+        onPress={() => {
+          navigation.navigate('Account');
+        }}>
         <Image source={require('../assets/dp.png')} style={styles.dp} />
-      </View>
+      </TouchableOpacity>
     </View>
   );
 }

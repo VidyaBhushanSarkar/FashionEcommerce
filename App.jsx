@@ -62,14 +62,16 @@ export default function App() {
             name="Cart"
             component={CartScreen}
             options={{
-              tabBarIcon: ({size, focused, color}) => {
-                const carts = React.useContext(CartContext);
+              tabBarIcon: ({size, color}) => {
+                const {carts} = React.useContext(CartContext);
                 return (
                   <View style={styles.cartContainer}>
                     <Icon name="shopping-cart" size={size} color={color} />
-                    <View style={styles.cartValueContainer}>
-                      <Text style={styles.cartValue}>{carts?.length}</Text>
-                    </View>
+                    {carts.length >= 1 ? (
+                      <View style={styles.cartValueContainer}>
+                        <Text style={styles.cartValue}>{carts.length}</Text>
+                      </View>
+                    ) : null}
                   </View>
                 );
               },
@@ -79,7 +81,7 @@ export default function App() {
             name="Account"
             component={AccountScreen}
             options={{
-              tabBarIcon: ({size, focused, color}) => {
+              tabBarIcon: ({size, color}) => {
                 return <MIcon name="account" size={size} color={color} />;
               },
             }}

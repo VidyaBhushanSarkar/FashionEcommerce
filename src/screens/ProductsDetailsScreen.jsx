@@ -59,9 +59,10 @@ export default function ProductsDetails() {
       </View>
       <Text style={[styles.detailsText, styles.sizeText]}>Colors</Text>
       <View style={styles.colorContainer}>
-        {colorsArray.map(color => {
+        {colorsArray.map((color, index) => {
           return (
             <TouchableOpacity
+              key={index}
               onPress={() => {
                 setSelectedColor(color);
               }}

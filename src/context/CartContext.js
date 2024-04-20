@@ -29,7 +29,8 @@ export const CartProvider = ({children}) => {
   };
 
   const totalSum = carts => {
-    const totalSum = carts.reduce((amount, item) => amount + item.price, 0);
+    let totalSum = carts.reduce((amount, item) => amount + item.price, 0);
+    totalSum = totalSum.toFixed(2);
     setTotalPrice(totalSum);
   };
 

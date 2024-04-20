@@ -3,7 +3,6 @@ import React, {useContext} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import Header from '../components/Header';
 import CartCard from '../components/CartCard';
-import symbolicateStackTrace from 'react-native/Libraries/Core/Devtools/symbolicateStackTrace';
 import {CartContext} from '../context/CartContext';
 
 export default function CartScreen() {
@@ -18,7 +17,7 @@ export default function CartScreen() {
         renderItem={({item}) => (
           <CartCard item={item} deleteCartItem={deleteCartItem} />
         )}
-        keyExtractor={item => item}
+        keyExtractor={item => item.id}
         showsVerticalScrollIndicator={false}
       />
 
